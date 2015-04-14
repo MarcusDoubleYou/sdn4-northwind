@@ -5,8 +5,11 @@
  */
 package org.neo4j.example.northwind.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 /**
  * Entity class to represent a Order entity within the Northwind example dataset.
@@ -34,7 +37,14 @@ public class Order {
 	public String shipPostalCode;
 	public String shipVia;
 	
-	public Order() {}
+	@Relationship(type = "ORDERS", direction = Relationship.OUTGOING)
+	public Set<Product> products;
+	@Relationship(type = "PURCHASED", direction = Relationship.INCOMING)
+	public Customer customer;
+	
+	public Order() {
+		products = new HashSet<>();
+	}
 
 	public Order(Long id, String customerID, String orderID, String orderDate, String shipAddress, String shipRegion, String freight, String shipCity, String shipCountry, String shipName, String employeeID, String shippedDate, String requiredDate, String shipPostalCode, String shipVia) {
 		this.id = id;

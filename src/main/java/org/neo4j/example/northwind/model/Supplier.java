@@ -5,8 +5,11 @@
  */
 package org.neo4j.example.northwind.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 /**
  * Entity class to represent a Supplier entity within the Northwind example dataset.
@@ -31,8 +34,13 @@ public class Supplier {
 	public String companyName;
 	public String region;
 	public String address;
+
+	@Relationship(type = "SUPPLIES", direction = Relationship.OUTGOING)
+	public Set<Product> products;
 	
-	public Supplier() {}
+	public Supplier() {
+		products = new HashSet<>();
+	}
 
 	public Supplier(Long id, String supplierID, String contactTitle, String contactName, String homePage, String city, String postalCode, String country, String phone, String fax, String companyName, String region, String address) {
 		this.id = id;
