@@ -152,7 +152,7 @@ The output are lists of the nodes and their related nodes of the Northwind graph
 ### Suppliers
 
     [...]
-    	Supplier: Pasta Buttini s.r.l.
+	Supplier: Pasta Buttini s.r.l.
 	  Product: Gnocchi di nonna Alice
 	  Product: Ravioli Angelo
 	Supplier: Leka Trading
