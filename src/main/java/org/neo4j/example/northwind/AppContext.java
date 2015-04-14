@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableNeo4jRepositories("org.neo4j.example.northwind.repository")
 @EnableTransactionManagement
-@ComponentScan("org.neo4j.example.northwind")
 public class AppContext extends Neo4jConfiguration {
 
 	public static final String NEO4J_HOST = "http://localhost:";
@@ -27,7 +26,7 @@ public class AppContext extends Neo4jConfiguration {
 	@Override
 	public SessionFactory getSessionFactory() {
 		System.setProperty("username", "neo4j");
-		System.setProperty("password", "admin");
+		System.setProperty("password", System.getProperty("password","admin"));
 		return new SessionFactory("org.neo4j.example.northwind.model");
 	}
 

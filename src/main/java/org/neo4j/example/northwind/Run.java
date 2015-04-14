@@ -24,25 +24,18 @@ public class Run {
 	
 	public static void main(final String[] args) {
 
-		final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppContext.class);
+		final AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppContext.class);
 
-		final ProductRepository  productRepository  = context.getBean(ProductRepository.class);
-		final CustomerRepository customerRepository = context.getBean(CustomerRepository.class);
-		final CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
-		final SupplierRepository supplierRepository = context.getBean(SupplierRepository.class);
-		final OrderRepository    orderRepository    = context.getBean(OrderRepository.class);
-
-		listProducts(productRepository);
-		listCustomers(customerRepository);
-		listCategories(categoryRepository);
-		listSuppliers(supplierRepository);
-		listOrders(orderRepository);
+		listProducts(ctx.getBean(ProductRepository.class));
+		listCustomers(ctx.getBean(CustomerRepository.class));
+		listCategories(ctx.getBean(CategoryRepository.class));
+		listSuppliers(ctx.getBean(SupplierRepository.class));
+		listOrders(ctx.getBean(OrderRepository.class));
 
 	}
 
 	public static void listProducts(final ProductRepository  productRepository) {
-		final Iterable<Product> products = productRepository.findAll();
-		for (final Product p : products) {			
+		for (final Product p : productRepository.findAll()) {			
 			System.out.println("Product " + p.productName);
 			System.out.println("  Supplier: " + p.supplier.companyName);
 			System.out.println("  Category: " + p.category.categoryName);
@@ -50,8 +43,7 @@ public class Run {
 	}
 	
 	public static void listCustomers(final CustomerRepository customerRepository) {
-		final Iterable<Customer> customers = customerRepository.findAll();
-		for (final Customer c : customers) {
+		for (final Customer c : customerRepository.findAll()) {
 			System.out.println("Customer: " + c.contactName);
 			for (Order o : c.orders) {
 				System.out.println("  Order: " + o.orderID);
@@ -60,8 +52,7 @@ public class Run {
 	}
 
 	public static void listCategories(final CategoryRepository categoryRepository) {
-		final Iterable<Category> category = categoryRepository.findAll();
-		for (final Category c : category) {
+		for (final Category c : categoryRepository.findAll()) {
 			System.out.println("Category: " + c.categoryName);
 			for (Product p : c.products) {
 				System.out.println("  Product: " + p.productName);
@@ -70,8 +61,7 @@ public class Run {
 	}
 
 	public static void listSuppliers(final SupplierRepository supplierRepository) {
-		final Iterable<Supplier> supplier = supplierRepository.findAll();
-		for (final Supplier s : supplier) {
+		for (final Supplier s : supplierRepository.findAll()) {
 			System.out.println("Supplier: " + s.companyName);
 			for (Product p : s.products) {
 				System.out.println("  Product: " + p.productName);
@@ -80,8 +70,7 @@ public class Run {
 	}
 	
 	public static void listOrders(final OrderRepository    orderRepository) {
-		final Iterable<Order> order = orderRepository.findAll();
-		for (final Order o : order) {
+		for (final Order o : orderRepository.findAll()) {
 			System.out.println("Order: " + o.orderID);
 			System.out.println("  Customer: " + o.customer.contactName);
 			for (Product p : o.products) {
