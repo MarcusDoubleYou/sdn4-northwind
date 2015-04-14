@@ -55,7 +55,7 @@
 ## Create indexes for customers and orders
 
 	CREATE INDEX ON :Customer(customerID)
-	CREATE INDEX ON :Orders(orderID)
+	CREATE INDEX ON :Order(orderID)
 
 ## Create relationships (:Customer)-[:PURCHASED]->(:Order) [1:*]
 
