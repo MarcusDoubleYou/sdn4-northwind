@@ -33,6 +33,7 @@ public class Run {
 		listOrders(ctx.getBean(OrderRepository.class));
 		
 		System.out.println(ctx.getBean(ProductRepository.class).findByName("Chang").productName);
+		System.out.println(ctx.getBean(ProductRepository.class).findByName(".*hang.*").productName);
 
 	}
 
