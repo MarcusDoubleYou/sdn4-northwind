@@ -31,6 +31,8 @@ public class Run {
 		listCategories(ctx.getBean(CategoryRepository.class));
 		listSuppliers(ctx.getBean(SupplierRepository.class));
 		listOrders(ctx.getBean(OrderRepository.class));
+		
+		System.out.println(ctx.getBean(ProductRepository.class).findByName("Chang").productName);
 
 	}
 
